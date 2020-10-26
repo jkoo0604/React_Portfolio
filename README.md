@@ -2,4 +2,4 @@
 
 ### Personal portfolio built with React and serverless backend using Google Cloud
 
-Visit deployed version [here](jayoungkoo.com)
+Visit the deployed site [here](https://jayoungkoo.com)

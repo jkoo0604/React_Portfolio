@@ -48,6 +48,10 @@ const Wrapper = styled.div`
         width: 32px;
     }
 
+    .contact .icon:hover {
+        transform: scale(1.1);
+    }
+
     .iconLink + .iconLink {
         margin-left: 15px;
     }

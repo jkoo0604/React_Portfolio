@@ -9,16 +9,16 @@ import colors from '../config/colors';
 
 const containerVariants = {
     initial: {
-        opacity: 0
+        opacity: 0,
     },
     animate: {
         opacity: 1,
     },
     transition: {
         duration: 1.5,
-        type: 'tween'
-    }
-}
+        type: 'tween',
+    },
+};
 
 const StyledDiv = styled.div`
     color: ${colors.text10};
@@ -99,17 +99,45 @@ const StyledPrint = styled.div`
 
 const About = () => {
     return (
-        <ParallaxContainer containerId={'About'} headerHeight={55} bgColor={'skyblue'} colorStart={bgColors[0]} colorEnd={bgColors[1]} restrictHeight={true} mobileRestrictHeight={true}>
-            <Content minHeight={'100%'} width={'100%'} variants={containerVariants}>
+        <ParallaxContainer
+            containerId={'About'}
+            headerHeight={55}
+            bgColor={'skyblue'}
+            colorStart={bgColors[0]}
+            colorEnd={bgColors[1]}
+            restrictHeight={true}
+            mobileRestrictHeight={true}
+        >
+            <Content
+                minHeight={'100%'}
+                width={'100%'}
+                variants={containerVariants}
+            >
                 <StyledDiv>
-                    <p className='title'>about me</p>
-                    <p className='subtitle'>full stack developer</p>
-                    <p className='body'>After working in business operations and data analytics for 8+ years, I have made a career pivot to pursue my passion in software development. I am eager to apply the creative problem solving skills and work ethics that helped me succeed in my previous career to a new one in tech.</p>
+                    <p className="title">about me</p>
+                    <p className="subtitle">full stack developer</p>
+                    <p className="body">
+                        After working in business operations and data analytics
+                        for 8+ years, I have made a career pivot to pursue my
+                        passion in software development. I am eager to apply the
+                        creative problem solving skills and work ethics that
+                        helped me succeed in my previous career to a new one in
+                        tech.
+                    </p>
+                    <p className="body">
+                        <ul>
+                            <li>AWS Certified Developer - Associate</li>
+                            <li>MBA - UCLA Anderson</li>
+                        </ul>
+                    </p>
                 </StyledDiv>
-            <StyledPrint>This site uses ReactJS, Framer Motion, Google Cloud, Recaptcha, and more.</StyledPrint>
+                <StyledPrint>
+                    This site uses ReactJS, Framer Motion, Google Cloud,
+                    Recaptcha, and more.
+                </StyledPrint>
             </Content>
         </ParallaxContainer>
     );
-}
+};
 
 export default About;

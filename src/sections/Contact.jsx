@@ -9,24 +9,24 @@ import Content from '../components/Content';
 import Input from '../components/Input';
 import bgColors from '../config/bgColors';
 import colors from '../config/colors';
-import {contactUrl} from '../config/contactUrl';
-import {recaptchaKey} from '../config/recaptchaConfig';
+import { contactUrl } from '../config/contactUrl';
+import { recaptchaKey } from '../config/recaptchaConfig';
 import linkedin from '../assets/icon_linkedin@3x.png';
 import github from '../assets/icon_github@3x.png';
 import mail from '../assets/icon_mail@3x.png';
 
 const containerVariants = {
     initial: {
-        opacity: 0
+        opacity: 0,
     },
     animate: {
-        opacity: 1
+        opacity: 1,
     },
     transition: {
         duration: 1.5,
-        type: 'tween'
-    }
-}
+        type: 'tween',
+    },
+};
 
 const Wrapper = styled.div`
     width: 55%;
@@ -46,6 +46,7 @@ const Wrapper = styled.div`
 
     .contact .icon {
         width: 32px;
+        transition: all 0.3s;
     }
 
     .contact .icon:hover {
@@ -131,10 +132,12 @@ const StyledButton = styled.div`
     font-size: 24px;
     padding: 10px 50px;
     text-transform: uppercase;
-    cursor: ${({loading}) => loading === 'true' ? 'not-allowed' : 'pointer'};
+    cursor: ${({ loading }) =>
+        loading === 'true' ? 'not-allowed' : 'pointer'};
+    transition: all 0.2s;
 
     &:hover {
-        transform: scale(1.05)
+        transform: scale(1.05);
     }
 `;
 
@@ -181,7 +184,9 @@ const Contact = () => {
     const reRef = useRef();
 
     useEffect(() => {
-        const timer = setTimeout(() => {setSent('')}, 2000);
+        const timer = setTimeout(() => {
+            setSent('');
+        }, 2000);
         return () => clearTimeout(timer);
     }, [sent]);
 
@@ -190,8 +195,13 @@ const Contact = () => {
         setLastNameError(false);
         setEmailError(false);
         setMessageError(false);
-        
-        if (!firstName.length || !lastName.length || !email.length || !message.length) {
+
+        if (
+            !firstName.length ||
+            !lastName.length ||
+            !email.length ||
+            !message.length
+        ) {
             if (!firstName.length) setFirstNameError(true);
             if (!lastName.length) setLastNameError(true);
             if (!email.length) setEmailError(true);
@@ -199,20 +209,22 @@ const Contact = () => {
             return;
         } else {
             setButtonText('sending...');
-            const reqBody = {firstName, lastName, email, message};
+            const reqBody = { firstName, lastName, email, message };
             const token = await reRef.current.executeAsync();
             reRef.current.reset();
 
-            const sendMessage = firebase.functions().httpsCallable('verifyRecaptcha');
-            sendMessage({reqBody, token})
-                .then(res => {
+            const sendMessage = firebase
+                .functions()
+                .httpsCallable('verifyRecaptcha');
+            sendMessage({ reqBody, token })
+                .then((res) => {
                     setSent('Your message has been sent.');
                 })
-                .catch(error => {
+                .catch((error) => {
                     console.log('error code: ', error.code);
                     console.log('error message: ', error.message);
-                    console.log('error details: ', error.details);  
-                    setSent('An error occurred.');              
+                    console.log('error details: ', error.details);
+                    setSent('An error occurred.');
                 })
                 .finally(() => {
                     setFirstName('');
@@ -220,33 +232,108 @@ const Contact = () => {
                     setEmail('');
                     setMessage('');
                     setButtonText('send');
-                })
-        };
-    }
+                });
+        }
+    };
 
     return (
-        <Container containerId={'Contact'} headerHeight={55} bgColor={'lightsalmon'} colorStart={bgColors[4]} colorEnd={bgColors[5]} restrictHeight={true} mobileRestrictHeight={true}>
-            <Content minHeight={'100%'} variants={containerVariants} width={'100%'}>
+        <Container
+            containerId={'Contact'}
+            headerHeight={55}
+            bgColor={'lightsalmon'}
+            colorStart={bgColors[4]}
+            colorEnd={bgColors[5]}
+            restrictHeight={true}
+            mobileRestrictHeight={true}
+        >
+            <Content
+                minHeight={'100%'}
+                variants={containerVariants}
+                width={'100%'}
+            >
                 <Wrapper>
-                    <div className='contact'>
+                    <div className="contact">
                         <p>contact / connect</p>
-                        <div className='icons'>
-                            <a href={contactUrl['linkedin']} target='_blank' rel='noopener noreferrer' className='iconLink'><img src={linkedin} className='icon' alt='linkedin' /></a>
-                            <a href={contactUrl['github']} target='_blank' rel='noopener noreferrer' className='iconLink'><img src={github} className='icon' alt='github' /></a>
-                            <a href={contactUrl['email']} className='iconLink'><img src={mail} className='icon' alt='email' /></a>
+                        <div className="icons">
+                            <a
+                                href={contactUrl['linkedin']}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="iconLink"
+                            >
+                                <img
+                                    src={linkedin}
+                                    className="icon"
+                                    alt="linkedin"
+                                />
+                            </a>
+                            <a
+                                href={contactUrl['github']}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="iconLink"
+                            >
+                                <img
+                                    src={github}
+                                    className="icon"
+                                    alt="github"
+                                />
+                            </a>
+                            <a href={contactUrl['email']} className="iconLink">
+                                <img src={mail} className="icon" alt="email" />
+                            </a>
                         </div>
                     </div>
-                    <div className='form'>
+                    <div className="form">
                         <FormDiv>
-                            <Input id='first' value={firstName} setValue={setFirstName} label='First Name*' error={firstNameError} />
-                            <Input id='last' value={lastName} setValue={setLastName} label='Last Name*' error={lastNameError} />
-                            <Input id='email' value={email} setValue={setEmail} label='Email*' type='email' error={emailError} />
-                            <Input id='message' value={message} setValue={setMessage} label='Message*' textArea={true} error={messageError} />
+                            <Input
+                                id="first"
+                                value={firstName}
+                                setValue={setFirstName}
+                                label="First Name*"
+                                error={firstNameError}
+                            />
+                            <Input
+                                id="last"
+                                value={lastName}
+                                setValue={setLastName}
+                                label="Last Name*"
+                                error={lastNameError}
+                            />
+                            <Input
+                                id="email"
+                                value={email}
+                                setValue={setEmail}
+                                label="Email*"
+                                type="email"
+                                error={emailError}
+                            />
+                            <Input
+                                id="message"
+                                value={message}
+                                setValue={setMessage}
+                                label="Message*"
+                                textArea={true}
+                                error={messageError}
+                            />
                         </FormDiv>
-                        <div className='submit'>
-                            <StyledButton onClick={handleSubmit} loading={buttonText !== 'send' ? 'true' : 'false'}>{buttonText}</StyledButton>
-                            <StyledMsg className={sent !== '' ? 'visible' : ''}>{sent}</StyledMsg>
-                            <ReCAPTCHA sitekey={recaptchaKey} size='invisible' ref={reRef}/>
+                        <div className="submit">
+                            <StyledButton
+                                onClick={handleSubmit}
+                                loading={
+                                    buttonText !== 'send' ? 'true' : 'false'
+                                }
+                            >
+                                {buttonText}
+                            </StyledButton>
+                            <StyledMsg className={sent !== '' ? 'visible' : ''}>
+                                {sent}
+                            </StyledMsg>
+                            <ReCAPTCHA
+                                sitekey={recaptchaKey}
+                                size="invisible"
+                                ref={reRef}
+                            />
                         </div>
                     </div>
                 </Wrapper>
@@ -254,6 +341,6 @@ const Contact = () => {
             </Content>
         </Container>
     );
-}
+};
 
 export default Contact;

@@ -6,25 +6,28 @@ import Content from '../components/Content';
 import breakPoints from '../config/breakPoints';
 import bgColors from '../config/bgColors';
 import colors from '../config/colors';
+import aws from '../assets/images/aws_dva.png';
+import psm from '../assets/images/psmi.png';
+import { contactUrl } from '../config/contactUrl';
 
 const containerVariants = {
     initial: {
-        opacity: 0
+        opacity: 0,
     },
     animate: {
         opacity: 1,
     },
     transition: {
         duration: 1.5,
-        type: 'tween'
-    }
-}
+        type: 'tween',
+    },
+};
 
 const StyledDiv = styled.div`
     color: ${colors.text10};
     padding-left: 110px;
     font-family: 'Anton', sans-serif;
-    width: 50%;
+    width: 60%;
     background: transparent;
 
     .title {
@@ -80,6 +83,37 @@ const StyledDiv = styled.div`
     }
 `;
 
+const TextBlock = styled.div`
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 20px;
+    margin-bottom: 30px;
+
+    @media only screen and (max-width: ${breakPoints.xs}px) {
+        font-size: 16px;
+    }
+`;
+
+const ImageDiv = styled.div`
+    display: flex;
+
+    img {
+        max-height: 120px;
+        transition: all 0.3s;
+    }
+
+    img:hover {
+        transform: scale(1.07);
+    }
+
+    @media only screen and (max-width: ${breakPoints.xs}px) {
+        justify-content: center;
+
+        img {
+            max-height: 90px;
+        }
+    }
+`;
+
 const StyledPrint = styled.div`
     font-family: 'Fira Sans', sans-serif;
     font-size: 14px;
@@ -99,17 +133,55 @@ const StyledPrint = styled.div`
 
 const About = () => {
     return (
-        <ParallaxContainer containerId={'About'} headerHeight={55} bgColor={'skyblue'} colorStart={bgColors[0]} colorEnd={bgColors[1]} restrictHeight={true} mobileRestrictHeight={true}>
-            <Content minHeight={'100%'} width={'100%'} variants={containerVariants}>
+        <ParallaxContainer
+            containerId={'About'}
+            headerHeight={55}
+            bgColor={'skyblue'}
+            colorStart={bgColors[0]}
+            colorEnd={bgColors[1]}
+            restrictHeight={true}
+            mobileRestrictHeight={true}
+        >
+            <Content
+                minHeight={'100%'}
+                width={'100%'}
+                variants={containerVariants}
+            >
                 <StyledDiv>
-                    <p className='title'>about me</p>
-                    <p className='subtitle'>full stack developer</p>
-                    <p className='body'>After working in business operations and data analytics for 8+ years, I have made a career pivot to pursue my passion in software development. I am eager to apply the creative problem solving skills and work ethics that helped me succeed in my previous career to a new one in tech.</p>
+                    <p className="title">about me</p>
+                    <p className="subtitle">full stack developer</p>
+                    <TextBlock>
+                        After working in business operations and data analytics
+                        for 8+ years, I have made a career pivot to pursue my
+                        passion in software development. I am eager to apply the
+                        creative problem solving skills and work ethics that
+                        helped me succeed in my previous career to a new one in
+                        tech.
+                    </TextBlock>
+                    <ImageDiv>
+                        <a
+                            href={contactUrl['aws']}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <img src={aws} alt="AWS DVA" />
+                        </a>
+                        <a
+                            href={contactUrl['psm']}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <img src={psm} alt="PSM 1" />
+                        </a>
+                    </ImageDiv>
                 </StyledDiv>
-            <StyledPrint>This site uses ReactJS, Framer Motion, Google Cloud, Recaptcha, and more.</StyledPrint>
+                <StyledPrint>
+                    This site uses ReactJS, Framer Motion, Google Cloud,
+                    Recaptcha, and more.
+                </StyledPrint>
             </Content>
         </ParallaxContainer>
     );
-}
+};
 
 export default About;

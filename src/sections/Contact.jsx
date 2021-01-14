@@ -241,8 +241,8 @@ const Contact = () => {
             containerId={'Contact'}
             headerHeight={55}
             bgColor={'lightsalmon'}
-            colorStart={bgColors[4]}
-            colorEnd={bgColors[5]}
+            colorStart={bgColors[bgColors.length - 3]}
+            colorEnd={bgColors[bgColors.length - 2]}
             restrictHeight={true}
             mobileRestrictHeight={true}
         >

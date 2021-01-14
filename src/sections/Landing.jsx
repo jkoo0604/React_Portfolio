@@ -7,17 +7,17 @@ import bgColors from '../config/bgColors';
 import colors from '../config/colors';
 import breakPoints from '../config/breakPoints';
 
-const nameVariants={
+const nameVariants = {
     initial: {
-        opacity: 0
+        opacity: 0,
     },
     animate: {
         opacity: 1,
         transition: {
             duration: 3,
-            ease: 'easeInOut'
-        }
-    }
+            ease: 'easeInOut',
+        },
+    },
 };
 
 const StyledDiv = styled.div`
@@ -51,15 +51,24 @@ const StyledDiv = styled.div`
 
 const Landing = () => {
     return (
-        <MovieContainer containerId={'Landing'} headerHeight={55} bgColor={bgColors[1]}>
+        <MovieContainer
+            containerId={'Landing'}
+            headerHeight={55}
+            bgColor={bgColors[1]}
+        >
             <StyledDiv>
-                <motion.div className='name' variants={nameVariants} initial='initial' animate='animate'>
+                <motion.div
+                    className="name"
+                    variants={nameVariants}
+                    initial="initial"
+                    animate="animate"
+                >
                     <p>Jayoung</p>
                     <p>Koo</p>
                 </motion.div>
             </StyledDiv>
         </MovieContainer>
     );
-}
+};
 
 export default Landing;

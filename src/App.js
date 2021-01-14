@@ -17,7 +17,7 @@ if (!firebase.apps.length) {
 firebase.analytics();
 
 function App() {
-  const proj = [1, 2, 3];
+  const proj = [1, 2, 3, 4];
 
   return (
     <WindowDimensionProvider>

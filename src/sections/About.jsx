@@ -98,7 +98,7 @@ const ImageDiv = styled.div`
 
     img {
         max-height: 120px;
-        transition: all 0.3s;
+        transition: all 0.2s;
     }
 
     img:hover {

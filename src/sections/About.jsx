@@ -176,7 +176,7 @@ const About = () => {
                     </ImageDiv>
                 </StyledDiv>
                 <StyledPrint>
-                    This site uses ReactJS, Framer Motion, Google Cloud,
+                    This site uses ReactJS, Framer Motion, Google Cloud Functions,
                     Recaptcha, and more.
                 </StyledPrint>
             </Content>

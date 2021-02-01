@@ -337,7 +337,7 @@ const Contact = () => {
                         </div>
                     </div>
                 </Wrapper>
-                <StyledPrint>Jayoung Koo ©2020</StyledPrint>
+                <StyledPrint>Jayoung Koo ©2021</StyledPrint>
             </Content>
         </Container>
     );

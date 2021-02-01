@@ -149,14 +149,9 @@ const About = () => {
             >
                 <StyledDiv>
                     <p className="title">about me</p>
-                    <p className="subtitle">full stack developer</p>
+                    <p className="subtitle">full stack developer + business analytics professional</p>
                     <TextBlock>
-                        After working in business operations and data analytics
-                        for 8+ years, I have made a career pivot to pursue my
-                        passion in software development. I am eager to apply the
-                        creative problem solving skills and work ethics that
-                        helped me succeed in my previous career to a new one in
-                        tech.
+                        A full stack developer with knowledge of various technologies including JavaScript, Python, Java, and cloud. Uniquely positioned to combine software development with 8 years of business operations experience and expertise in data analytics and visualizations. A creative problem solver with proven track record and exceptional work ethics looking for a full-time opportunity.
                     </TextBlock>
                     <ImageDiv>
                         <a
